@@ -81,7 +81,6 @@ public class ThunderCloud extends Entity
 		if (en.getType().contentEquals("Projectile") || en.getType().contentEquals("Item"))
 		{
 			modifyHealth(-en.getPower());
-			myBehavior().knockBack(this, 2);
 		}
 	}
 

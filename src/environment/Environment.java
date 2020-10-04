@@ -119,8 +119,13 @@ public class Environment extends JPanel
 		int index = 0;
 		Entity nullEn = new NullEntity(this, "");
 
-		while (!entities[index].equals(e) && index < MAX_ENTITIES)
+		while (!entities[index].equals(e) || index < MAX_ENTITIES)
+		{
 			index++;
+			
+			if(entities[index].equals(e))
+				break;
+		}
 
 		if (entities[index].isPlayer())
 		{

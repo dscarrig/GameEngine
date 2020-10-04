@@ -14,6 +14,7 @@ public class Behaviors
 		en = e;
 	}
 
+	// Behavior for 2D sidescroll movement with gravity and collision
 	public void movementWithGravity()
 	{
 		boolean xBlocked = false;
@@ -74,11 +75,22 @@ public class Behaviors
 		}
 
 		en.moveByVelocity(!xBlocked, !yBlocked);
+		
+		if(en.getTempXVelocity() > 0)
+			en.setTempXVelocity(en.getTempXVelocity() - 1);
+		else if(en.getTempXVelocity() < 0)
+			en.setTempXVelocity(en.getTempXVelocity() + 1);
+		
+		if(en.getTempYVelocity() > 0)
+			en.setTempYVelocity(en.getTempYVelocity() - 1);
+		else if(en.getTempYVelocity() < 0)
+			en.setTempYVelocity(en.getTempYVelocity() + 1);
 
 		en.setXBlocked(xBlocked);
 		en.setYBlocked(yBlocked);
 	}
 
+	// Behavior for 2D sidescroll movement with gravity and no  collision
 	public void movementWithGravityNoCollision()
 	{
 		boolean xBlocked = false;
@@ -103,6 +115,7 @@ public class Behaviors
 		en.setYBlocked(yBlocked);
 	}
 
+	// Behavior for moving towards entity otherEn in 2D sidescroll
 	public void moveTowardSideScroll(Entity otherEn)
 	{
 		if (en.getXVelocity() == 0)
@@ -115,6 +128,7 @@ public class Behaviors
 		}
 	}
 
+	// Returns int direction if entity can see otherEn in range sightRange or -1 if can't. If directLine true, only checks direct line, otherwise a triangle
 	public int canSee(Entity otherEn, int sightRange, boolean directLine)
 	{
 		int result = -1;
@@ -269,22 +283,14 @@ public class Behaviors
 		en.moveByVelocity(true, true);
 	}
 
-	public void knockBack(Entity otherEn, int amount)
+	public void knockBack(Entity otherEn, int amount, int direction)
 	{
-		int xPush = en.getXVelocity() * amount + amount;
-		int yPush = en.getYVelocity() * amount + amount;
+		
+		int xPush = amount * direction;
+		//int yPush = amount;
 
-		if (!otherEn.hasSolidCollisionEntity(otherEn.getXVelocity() + xPush, otherEn.getYVelocity() + yPush))
-		{
-			otherEn.setXPos(otherEn.getXPos() + xPush);
-			otherEn.setYPos(otherEn.getYPos() + yPush);
-
-			if (otherEn.isPlayer())
-			{
-				otherEn.getEnvironment().scrollXView(xPush);
-				otherEn.getEnvironment().scrollYView(yPush);
-			}
-		}
+		otherEn.setTempXVelocity(xPush);
+		//otherEn.setTempYVelocity(yPush);
 	}
 
 	public void moveToGround()

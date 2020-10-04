@@ -22,6 +22,8 @@ public abstract class Entity implements Cloneable
 	private int yPos;
 	private int xVelocity;
 	private int yVelocity;
+	private int tempXVelocity;
+	private int tempYVelocity;
 	private int baseSpeed;
 	private int health;
 	private int maxHealth;
@@ -51,6 +53,8 @@ public abstract class Entity implements Cloneable
 		yPos = 0;
 		xVelocity = 0;
 		yVelocity = 0;
+		tempXVelocity = 0;
+		tempYVelocity = 0;
 		maxHealth = -1;
 		power = 0;
 		name = n;
@@ -261,12 +265,32 @@ public abstract class Entity implements Cloneable
 
 	public int getXVelocity()
 	{
-		return xVelocity;
+		return xVelocity + tempXVelocity;
 	}
 
 	public int getYVelocity()
 	{
-		return yVelocity;
+		return yVelocity + tempYVelocity;
+	}
+	
+	public void setTempXVelocity(int xv)
+	{
+		tempXVelocity = xv;
+	}
+
+	public void setTempYVelocity(int yv)
+	{
+		tempYVelocity = yv;
+	}
+	
+	public int getTempXVelocity()
+	{
+		return tempXVelocity;
+	}
+
+	public int getTempYVelocity()
+	{
+		return tempYVelocity;
 	}
 
 	public void setBaseSpeed(int s)
@@ -384,17 +408,20 @@ public abstract class Entity implements Cloneable
 
 	public void moveByVelocity(boolean xMove, boolean yMove)
 	{
+		int xTotal = xVelocity + tempXVelocity;
+		int yTotal = yVelocity + tempYVelocity;
+		
 		if (xMove)
 		{
-			if (xVelocity <= TERMINAL_VELOCITY)
-				xPos += xVelocity;
+			if (xTotal <= TERMINAL_VELOCITY)
+				xPos += xTotal;
 			else
 				xPos += TERMINAL_VELOCITY;
 		}
 		if (yMove)
 		{
-			if (yVelocity <= TERMINAL_VELOCITY)
-				yPos += yVelocity;
+			if (yTotal <= TERMINAL_VELOCITY)
+				yPos += yTotal;
 			else
 				yPos += TERMINAL_VELOCITY;
 		}

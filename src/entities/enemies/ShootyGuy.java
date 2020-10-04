@@ -114,6 +114,11 @@ public class ShootyGuy extends Entity
 
 			if (getCollisionEntity(getXVelocity(), getYVelocity(), true).isPlayer())
 			{
+				if(getEnvironment().getPlayer().getXVelocity() > 0)
+					myBehavior().knockBack(this, 12, 1);
+				else
+					myBehavior().knockBack(this, 12, -1);
+				
 				getEnvironment().getPlayer().collisionEvent(this);
 			}
 
@@ -152,7 +157,11 @@ public class ShootyGuy extends Entity
 		if (en.getType().contentEquals("Projectile") || en.getType().contentEquals("Item"))
 		{
 			modifyHealth(-en.getPower());
-			myBehavior().knockBack(this, 2);
+			
+			if(getXVelocity() > 0)
+				myBehavior().knockBack(this, 12, 1);
+			else
+				myBehavior().knockBack(this, 12, -1);
 		}
 	}
 

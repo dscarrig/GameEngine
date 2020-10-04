@@ -80,6 +80,11 @@ public class SideScrollEnemy extends Entity
 			if(getCollisionEntity(getXVelocity(), getYVelocity(), true).isPlayer())
 			{
 				getEnvironment().getPlayer().collisionEvent(this);
+				
+				if(getXVelocity() > 0)
+					myBehavior().knockBack(this, 12, 1);
+				else
+					myBehavior().knockBack(this, 12, -1);
 			}
 			else if (hasSolidCollisionEntity(getXVelocity(), 0))
 			{
@@ -101,15 +106,22 @@ public class SideScrollEnemy extends Entity
 			delete();
 
 		myBehavior().movementWithGravity();
+		
+		System.out.println("Temp X Velocity " + this.getTempXVelocity());
+		System.out.println("Velocity " + this.getXVelocity());
 	}
 	
 	@Override
 	public void collisionEvent(Entity en)
 	{
-		if(en.getType().contentEquals("Projectile") || en.getType().contentEquals("Item"))
+		if (en.getType().contentEquals("Projectile") || en.getType().contentEquals("Item"))
 		{
 			modifyHealth(-en.getPower());
-			myBehavior().knockBack(this, 2);
+			
+			if(en.getXVelocity() > 0)
+				myBehavior().knockBack(this, 12, 1);
+			else
+				myBehavior().knockBack(this, 12, -1);
 		}
 	}
 
