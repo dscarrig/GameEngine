@@ -66,11 +66,11 @@ public class Behaviors
 
 		if (!en.getState("bottomSolid") && !en.getState("onLadder"))
 		{
-			en.setYVelocity(en.getYVelocity() + 1);
+			en.setYVelocity(en.getAbsoluteYVelocity() + 1);
 
 			if (en.getYVelocity() == 0)
 			{
-				en.setYVelocity(en.getYVelocity() + 1);
+				en.setYVelocity(en.getAbsoluteYVelocity() + 1);
 			}
 		}
 
@@ -85,12 +85,12 @@ public class Behaviors
 			en.setTempYVelocity(en.getTempYVelocity() - 1);
 		else if(en.getTempYVelocity() < 0)
 			en.setTempYVelocity(en.getTempYVelocity() + 1);
-
+		
 		en.setXBlocked(xBlocked);
 		en.setYBlocked(yBlocked);
 	}
 
-	// Behavior for 2D sidescroll movement with gravity and no  collision
+	// Behavior for 2D sidescroll movement with gravity and no collision
 	public void movementWithGravityNoCollision()
 	{
 		boolean xBlocked = false;
@@ -124,7 +124,7 @@ public class Behaviors
 		if ((otherEn.getXPos() > en.getXPos() && en.getXVelocity() < 0)
 				|| (otherEn.getXPos() < en.getXPos() && en.getXVelocity() > 0))
 		{
-			en.setXVelocity(-en.getXVelocity());
+			en.setXVelocity(-en.getAbsoluteXVelocity());
 		}
 	}
 
@@ -283,14 +283,14 @@ public class Behaviors
 		en.moveByVelocity(true, true);
 	}
 
-	public void knockBack(Entity otherEn, int amount, int direction)
-	{
+	public void knockBack(Entity otherEn, int amount)
+	{		
+		int push = amount;
 		
-		int xPush = amount * direction;
-		//int yPush = amount;
+		if(en.getXPos() < otherEn.getXPos())
+			push = -amount;
 
-		otherEn.setTempXVelocity(xPush);
-		//otherEn.setTempYVelocity(yPush);
+		en.setTempXVelocity(push);
 	}
 
 	public void moveToGround()

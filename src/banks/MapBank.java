@@ -259,9 +259,10 @@ public class MapBank
 		final int JF = 7;
 		final int SG = 8;
 		final int ZG = 9;
+		final int HP = 10;
 		
 		String[] newMapEntities = {"Block", "SideScrollPlayer", "TopDownPlayer", "Kitten", "SideScrollEnemy", "FallBlock", "Ladder", "JumpingFireball", "ShootyGuy",
-				"ZapGun"};
+				"ZapGun", "HeartPickup"};
 		
 		int[] newMap = 
 			{
@@ -279,15 +280,15 @@ public class MapBank
 				OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, BL, OO, OO, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
 				BL, BL, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, OO, OO, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
 				OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, OO, OO, BL, BL, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
-				OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
-				BL, OO, OO, OO, BL, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
-				OO, OO, OO, BL, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, FB, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
-				OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
-				OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, FB, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
-				OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
-				OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, FB, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
-				OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, KI, OO, OO, OO, OO, OO, OO, OO, OO, BL, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
-				OO, OO, OO, OO, OO, OO, OO, KI, BL, OO, OO, SG, OO, OO, WE, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
+				OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
+				BL, OO, OO, OO, BL, OO, OO, OO, OO, LA, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
+				OO, OO, OO, BL, OO, OO, OO, OO, OO, LA, BL, BL, BL, BL, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, FB, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
+				OO, OO, OO, OO, OO, OO, OO, OO, OO, LA, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
+				OO, OO, OO, OO, OO, OO, OO, OO, OO, LA, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, FB, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
+				OO, OO, OO, OO, OO, OO, OO, OO, OO, LA, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
+				OO, OO, OO, OO, OO, OO, OO, OO, OO, LA, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, FB, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
+				OO, OO, OO, OO, OO, OO, OO, OO, OO, LA, OO, OO, OO, OO, OO, OO, OO, OO, OO, KI, OO, OO, OO, OO, OO, OO, OO, OO, BL, OO, OO, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
+				OO, OO, OO, OO, OO, OO, OO, KI, BL, LA, OO, SG, OO, OO, WE, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, OO, BL, OO, OO, HP, OO, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
 				BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, OO, OO, OO, OO, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, BL, OO, LA, OO, OO, OO,
 			};
 		

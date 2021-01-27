@@ -155,10 +155,7 @@ public class WheelMan extends Entity
 			else
 				setSpriteState("PainLeft");
 
-			if(en.getXVelocity() > 0)
-				myBehavior().knockBack(this, 12, 1);
-			else 
-				myBehavior().knockBack(this, 12, -1);
+			myBehavior().knockBack(en, 12);
 		}
 
 		// Event for collecting an item

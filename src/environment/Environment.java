@@ -8,6 +8,7 @@ import javax.swing.*;
 import banks.*;
 import entities.base.Entity;
 import entities.base.NullEntity;
+import entities.blocks.Block;
 import overlayInterface.Overlay;
 import overlayInterface.OverlayComponent;
 
@@ -307,6 +308,8 @@ public class Environment extends JPanel
 
 				count++;
 			}
+			
+			
 		}
 
 		if (fromDirection > -1)
@@ -327,6 +330,15 @@ public class Environment extends JPanel
 			}
 		}
 		carrying = false;
+		
+		addRemove();
+	}
+	
+	private void addRemove()
+	{
+		Entity dummy = new Block(this, "");
+		addEntity(dummy);
+		removeEntity(dummy);
 	}
 
 	// Sets all the locations for the entities when transitioning from another map

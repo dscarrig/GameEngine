@@ -114,11 +114,8 @@ public class ShootyGuy extends Entity
 
 			if (getCollisionEntity(getXVelocity(), getYVelocity(), true).isPlayer())
 			{
-				if(getEnvironment().getPlayer().getXVelocity() > 0)
-					myBehavior().knockBack(this, 12, 1);
-				else
-					myBehavior().knockBack(this, 12, -1);
-				
+				myBehavior().knockBack(getEnvironment().getPlayer(), 12);
+
 				getEnvironment().getPlayer().collisionEvent(this);
 			}
 
@@ -158,10 +155,7 @@ public class ShootyGuy extends Entity
 		{
 			modifyHealth(-en.getPower());
 			
-			if(getXVelocity() > 0)
-				myBehavior().knockBack(this, 12, 1);
-			else
-				myBehavior().knockBack(this, 12, -1);
+			myBehavior().knockBack(en, 12);
 		}
 	}
 

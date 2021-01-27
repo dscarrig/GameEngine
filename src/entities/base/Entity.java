@@ -273,6 +273,16 @@ public abstract class Entity implements Cloneable
 		return yVelocity + tempYVelocity;
 	}
 	
+	public int getAbsoluteXVelocity()
+	{
+		return xVelocity;
+	}
+
+	public int getAbsoluteYVelocity()
+	{
+		return yVelocity;
+	}
+	
 	public void setTempXVelocity(int xv)
 	{
 		tempXVelocity = xv;

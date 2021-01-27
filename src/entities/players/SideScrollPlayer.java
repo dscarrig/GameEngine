@@ -29,7 +29,7 @@ public class SideScrollPlayer extends Entity
 		super(e, n);
 
 		setType("Player");
-		setBaseSpeed(4);
+		setBaseSpeed(5);
 
 		// setSprite("CatTabby");
 		// setSprite("WheelBot");
@@ -41,10 +41,7 @@ public class SideScrollPlayer extends Entity
 		invincibility = 0;
 		
 		if(items.contains(("JumpShoes")))
-		{
 			jumpHeight = 24;
-			System.out.println("You have jump power!");
-		}
 		else
 			jumpHeight = 20;
 		
@@ -156,15 +153,12 @@ public class SideScrollPlayer extends Entity
 			if (getHealth() < 0)
 				setHealth(0);
 
+			myBehavior().knockBack(en, 12);
+
 			if (getXVelocity() > 0)
 				setSpriteState("PainRight");
 			else
 				setSpriteState("PainLeft");
-
-			if(getXVelocity() > 0)
-				myBehavior().knockBack(this, 12, 1);
-			else 
-				myBehavior().knockBack(this, 12, -1);
 		}
 
 		// Event for collecting an item
@@ -196,6 +190,13 @@ public class SideScrollPlayer extends Entity
 		if (getState("bottomSolid") || getState("onLadder"))
 		{
 			setYVelocity(-jumpHeight);
+			
+			if(getXVelocity() > 0)
+				setTempXVelocity(4);
+			
+			if(getXVelocity() < 0)
+				setTempXVelocity(-4);
+			
 			setState("bottomSolid", false);
 			setState("onLadder", false);
 			setState("climbingUp", false);
@@ -377,10 +378,10 @@ public class SideScrollPlayer extends Entity
 
 				if (getState("bottomSolid"))
 				{
-					if (getXVelocity() > 0)
+					if (getAbsoluteXVelocity() > 0)
 						setXVelocity(getBaseSpeed() + 4);
 
-					if (getXVelocity() < 0)
+					if (getAbsoluteXVelocity() < 0)
 						setXVelocity(-getBaseSpeed() - 4);
 				}
 			}
@@ -402,12 +403,12 @@ public class SideScrollPlayer extends Entity
 		{
 			if (key == KeyEvent.VK_A)
 			{
-				if (getXVelocity() < 0)
+				if (getAbsoluteXVelocity() < 0)
 					setXVelocity(0);
 			}
 			if (key == KeyEvent.VK_D)
 			{
-				if (getXVelocity() > 0)
+				if (getAbsoluteXVelocity() > 0)
 					setXVelocity(0);
 			}
 			if (key == KeyEvent.VK_W)
@@ -431,10 +432,10 @@ public class SideScrollPlayer extends Entity
 			{
 				setState("running", false);
 
-				if (getXVelocity() > 0)
+				if (getAbsoluteXVelocity() > 0)
 					setXVelocity(getBaseSpeed());
 
-				if (getXVelocity() < 0)
+				if (getAbsoluteXVelocity() < 0)
 					setXVelocity(-getBaseSpeed());
 			}
 
