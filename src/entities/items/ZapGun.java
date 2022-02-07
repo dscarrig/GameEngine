@@ -1,7 +1,7 @@
 package entities.items;
 
 import entities.base.Entity;
-import entities.players.SideScrollPlayer;
+import entities.players.Player;
 import entities.projectiles.Bullet;
 import environment.Environment;
 
@@ -12,7 +12,7 @@ public class ZapGun extends Entity
 	private int curMissileDelay;
 	private boolean activatePressed;
 
-	private SideScrollPlayer player;
+	private Player player;
 
 	public ZapGun(Environment e, String n)
 	{
@@ -38,7 +38,7 @@ public class ZapGun extends Entity
 		if (getCollisionEntity(getXVelocity(), getYVelocity(), true).isPlayer() && !getState("carrying")
 				&& !getState("dropping"))
 		{
-			player = (SideScrollPlayer) getEnvironment().getPlayer();
+			player = (Player) getEnvironment().getPlayer();
 			player.collisionEvent(this);
 			getEnvironment().addItem(this);
 			setState("carrying", true);

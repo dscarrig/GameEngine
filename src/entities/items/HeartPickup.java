@@ -1,12 +1,12 @@
 package entities.items;
 
 import entities.base.Entity;
-import entities.players.SideScrollPlayer;
+import entities.players.Player;
 import environment.Environment;
 
 public class HeartPickup extends Entity
 {
-	private SideScrollPlayer player;
+	private Player player;
 
 	public HeartPickup(Environment e, String n)
 	{
@@ -25,7 +25,7 @@ public class HeartPickup extends Entity
 		// Behavior for player picking up item
 		if (getCollisionEntity(getXVelocity(), getYVelocity(), true).isPlayer())
 		{
-			player = (SideScrollPlayer) getEnvironment().getPlayer();
+			player = (Player) getEnvironment().getPlayer();
 			player.collisionEvent(this);
 		}
 		

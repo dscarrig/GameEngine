@@ -1,14 +1,14 @@
 package entities.items;
 
 import entities.base.Entity;
-import entities.players.SideScrollPlayer;
+import entities.players.Player;
 import environment.Environment;
 
 // The Zap Gun item. Shoots plasma balls
 public class JumpShoes extends Entity
 {
 
-	private SideScrollPlayer player;
+	private Player player;
 
 	public JumpShoes(Environment e, String n)
 	{
@@ -27,7 +27,7 @@ public class JumpShoes extends Entity
 		// Behavior for player picking up item
 		if (getCollisionEntity(getXVelocity(), getYVelocity(), true).isPlayer())
 		{
-			player = (SideScrollPlayer) getEnvironment().getPlayer();
+			player = (Player) getEnvironment().getPlayer();
 			player.collisionEvent(this);
 			getEnvironment().addItem(this);
 			delete();

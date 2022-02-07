@@ -120,12 +120,14 @@ public class Environment extends JPanel
 		int index = 0;
 		Entity nullEn = new NullEntity(this, "");
 
-		while (!entities[index].equals(e) || index < MAX_ENTITIES)
+		while (!entities[index].equals(e) || index < MAX_ENTITIES - 1)
 		{
 			index++;
 			
 			if(entities[index].equals(e))
+			{
 				break;
+			}
 		}
 
 		if (entities[index].isPlayer())
@@ -221,7 +223,9 @@ public class Environment extends JPanel
 		for (int i = 0; i < entityCount; i++)
 		{
 			if (entities[i].hasBehavior() && !entities[i].getType().equals("Blank"))
+			{
 				entities[i].behavior();
+			}
 		}
 	}
 

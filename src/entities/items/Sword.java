@@ -1,7 +1,7 @@
 package entities.items;
 
 import entities.base.Entity;
-import entities.players.SideScrollPlayer;
+import entities.players.Player;
 import environment.Environment;
 
 // The Sword item for slashing
@@ -10,7 +10,7 @@ public class Sword extends Entity
 	private int slashDelay;
 	private boolean activatePressed;
 
-	private SideScrollPlayer player;
+	private Player player;
 
 	public Sword(Environment e, String n)
 	{
@@ -37,7 +37,7 @@ public class Sword extends Entity
 		if (getCollisionEntity(getXVelocity(), getYVelocity(), true).isPlayer() && !getState("carrying")
 				&& !getState("dropping"))
 		{
-			player = (SideScrollPlayer) getEnvironment().getPlayer();
+			player = (Player) getEnvironment().getPlayer();
 			player.collisionEvent(this);
 			getEnvironment().addItem(this);
 			setState("carrying", true);
@@ -47,40 +47,48 @@ public class Sword extends Entity
 
 		if (getState("carrying"))
 		{
-			
-			if(!getState("slashing"))
+
+			if (!getState("slashing"))
 			{
 				setYPos(player.getYPos() + 20);
-				
-				if(player.getXVelocity() == 0)
+
+				if (player.getXVelocity() == 0)
 				{
-					if(player.getPrevXDirection() == LEFT)
+					if (player.getPrevXDirection() == LEFT)
+					{
 						setXPos(player.getXPos() - 15);
+					}
 					else
+					{
 						setXPos(player.getXPos() + 30);
-				}
-				else
+					}
+				} else
+				{
 					setXPos(player.getXPos());
-				
+				}
+
 				setSpriteState("PointedUp");
 				getSprite().setPaused(true);
 				getSprite().setColumn(0);
-			}
-			else
+			} else
 			{
 				setYPos(player.getYPos() + 30);
-				
+
 				if (player.getPrevXDirection() == LEFT)
 				{
-					if(getSprite().atRow("RightSlash"))
+					if (getSprite().atRow("RightSlash"))
+					{
 						setSpriteStateTerminal("LeftSlash");
-					
+					}
+
 					setXPos(player.getXPos() - 30);
 				} else
 				{
-					if(getSprite().atRow("LeftSlash"))
+					if (getSprite().atRow("LeftSlash"))
+					{
 						setSpriteStateTerminal("RightSlash");
-					
+					}
+
 					setXPos(player.getXPos() + 50);
 				}
 			}
@@ -92,17 +100,20 @@ public class Sword extends Entity
 			}
 		} else
 			myBehavior().moveToGround();
-		
-		if(getCollisionEntity(0, 0, false).isEnemy() && getState("slashing"))
+
+		if (getCollisionEntity(0, 0, false).isEnemy() && getState("slashing"))
 		{
 			getCollisionEntity(getXVelocity(), getYVelocity(), false).collisionEvent(this);
 			setState("slashing", false);
 		}
 
 		if (slashDelay > 0)
+		{
 			slashDelay--;
-		else
+		} else
+		{
 			setState("slashing", false);
+		}
 
 		if (getState("release"))
 		{
