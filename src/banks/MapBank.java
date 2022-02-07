@@ -67,7 +67,7 @@ public class MapBank
 		//final int JS = 10;
 		final int SW = 11;
 		
-		String[] newMapEntities = {"Block", "WheelMan", "TopDownPlayer", "Kitten", "SideScrollEnemy", "FallBlock", "Ladder", "JumpingFireball", "ShootyGuy", "WheelMan", "JumpShoes",
+		String[] newMapEntities = {"Block", "SideScrollPlayer", "TopDownPlayer", "Kitten", "SideScrollEnemy", "FallBlock", "Ladder", "JumpingFireball", "ShootyGuy", "WheelMan", "JumpShoes",
 				"Sword"};
 		
 		int[] newMap = 
