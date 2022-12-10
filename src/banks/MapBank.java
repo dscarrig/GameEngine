@@ -51,6 +51,7 @@ public class MapBank
 		String theme = "Grass";
 		
 		int[] transitions = {-1, -1, -1, -1};
+		int[] transitionLocs = {0, 0, 0, 0};
 		int[] spawnLocs = {-1, -1, -1, -1};
 		
 		final int OO = -1;
@@ -89,7 +90,7 @@ public class MapBank
 		transitions[TOP] = 5;
 		spawnLocs[TOP] = 58;
 		
-		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, spawnLocs, bg, theme);
+		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, transitionLocs, spawnLocs, bg, theme);
 	}
 	
 	public Map map01()
@@ -102,6 +103,7 @@ public class MapBank
 		String theme = "Grass";
 		
 		int[] transitions = {-1, -1, -1, -1};
+		int[] transitionLocs = {0, 0, 0, 0};
 		int[] spawnLocs = {-1, -1, -1, -1};
 		
 		final int OO = -1;
@@ -137,7 +139,7 @@ public class MapBank
 		
 		transitions[BOTTOM] = 2;
 		
-		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, spawnLocs, bg, theme);
+		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, transitionLocs, spawnLocs, bg, theme);
 	}
 	
 	public Map map02()
@@ -150,6 +152,7 @@ public class MapBank
 		String theme = "Cave";
 		
 		int[] transitions = {-1, -1, -1, -1};
+		int[] transitionLocs = {0, 0, 0, 0};
 		int[] spawnLocs = {-1, -1, -1, -1};
 		
 		final int OO = -1;
@@ -185,8 +188,9 @@ public class MapBank
 		transitions[TOP] = 1;
 		transitions[LEFT] = 3;
 		transitions[RIGHT] = 3;
+		spawnLocs[TOP] = 29;
 		
-		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, spawnLocs, bg, theme);
+		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, transitionLocs, spawnLocs, bg, theme);
 	}
 	 
 	public Map map03()
@@ -199,6 +203,7 @@ public class MapBank
 		String theme = "Jiggly";
 		
 		int[] transitions = {-1, -1, -1, -1};
+		int[] transitionLocs = {0, 0, 0, 0};
 		int[] spawnLocs = {-1, -1, -1, -1};
 		
 		final int OO = -1;
@@ -233,7 +238,7 @@ public class MapBank
 		transitions[LEFT] = 2;
 		transitions[RIGHT] = 2;
 		
-		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, spawnLocs, bg, theme);
+		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, transitionLocs, spawnLocs, bg, theme);
 	}
 	
 	public Map map04()
@@ -242,15 +247,16 @@ public class MapBank
 		int columns = 64;
 		int blockSize = 64;
 		
-		String bg = "kirbysized";
+		String bg = "greengreens";
 		String theme = "Grass";
 		
 		int[] transitions = {-1, -1, -1, -1};
+		int[] transitionLocs = {0, 0, 0, 0};
 		int[] spawnLocs = {-1, -1, -1, -1};
 		
 		final int OO = -1;
 		final int BL = 0;
-		//final int PL = 1;
+		final int PL = 1;
 		//final int ME = 2;
 		final int KI = 3;
 		final int WE = 4;
@@ -293,9 +299,11 @@ public class MapBank
 			};
 		
 		transitions[LEFT] = 5;
+		transitions[BOTTOM] = 2;
+		transitionLocs[BOTTOM] = 59;
 		spawnLocs[LEFT] = 21;
 		
-		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, spawnLocs, bg, theme);
+		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, transitionLocs, spawnLocs, bg, theme);
 	}
 	
 	public Map map05()
@@ -308,6 +316,7 @@ public class MapBank
 		String theme = "cloud";
 		
 		int[] transitions = {-1, -1, -1, -1};
+		int[] transitionLocs = {0, 0, 0, 0};
 		int[] spawnLocs = {-1, -1, -1, -1};
 		
 		final int OO = -1;
@@ -351,6 +360,6 @@ public class MapBank
 		transitions[RIGHT] = 4;
 		spawnLocs[RIGHT] = 7;
 		
-		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, spawnLocs, bg, theme);
+		return new Map(newMap, newMapEntities, rows, columns, blockSize, env, transitions, transitionLocs, spawnLocs, bg, theme);
 	}
 }

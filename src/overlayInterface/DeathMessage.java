@@ -18,6 +18,8 @@ public class DeathMessage extends OverlayComponent
 	public void clickReleasedAt(int xPos, int yPos)
 	{
 		if (isOver(xPos, yPos))
+		{
 			getOverlay().getEnvironment().reset();
+		}
 	}
 }

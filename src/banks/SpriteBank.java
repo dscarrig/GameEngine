@@ -305,7 +305,6 @@ public class SpriteBank
 			rowArray[0] = "Idle";
 			rowArray[1] = "Left";
 			rowArray[2] = "Right";
-			rowArray[3] = "JumpLeft";
 			rowArray[3] = "JumpRight";
 			rowArray[4] = "PainLeft";
 			rowArray[5] = "PainRight";

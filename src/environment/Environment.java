@@ -87,11 +87,15 @@ public class Environment extends JPanel
 					player = e;
 					playerAdded = true;
 				} else
+				{
 					add = false;
+				}
 			}
 
 			if (itemList.contains(e.getName()) && !carrying)
+			{
 				add = false;
+			}
 
 			if (add)
 			{
@@ -99,19 +103,27 @@ public class Environment extends JPanel
 				while (index < entityCount)
 				{
 					if (entities[index].getType().equals("Blank"))
+					{
 						break;
+					}
 					else
+					{
 						index++;
+					}
 				}
 
 				entities[index] = e;
 
 				if (index == entityCount)
+				{
 					entityCount++;
+				}
 			}
 
 		} else
-			System.out.println("Maximum entities");
+		{
+			System.out.println("--> Maximum entities");
+		}
 	}
 
 	// Removes entity e from the environment
@@ -209,7 +221,9 @@ public class Environment extends JPanel
 			System.out.println("Player pos: " + player.getXPos() + ", " + player.getYPos());
 			System.out.println("Map position: " + mapXPosition + ", " + mapYPosition);
 		} else
+		{
 			removeComponentFromOverlay("PauseScreen");
+		}
 	}
 
 	public boolean isPaused()
@@ -238,7 +252,9 @@ public class Environment extends JPanel
 		playerAdded = false;
 
 		for (int i = 0; i < entities.length; i++)
+		{
 			entities[i] = null;
+		}
 
 		map = mapBank.mapAtIndex(mapIndex);
 		Entity newEntity;
@@ -256,7 +272,9 @@ public class Environment extends JPanel
 					newEntity.setCoordinates(j * map.getBlockSize(), i * map.getBlockSize());
 
 					if (newEntity.getName().equals(""))
+					{
 						newEntity.setName(newEntity.getType() + count);
+					}
 
 					if (newEntity.getType().equals("Block"))
 					{
@@ -307,13 +325,13 @@ public class Environment extends JPanel
 					}
 
 					if (!newEntity.getType().equals("Blank"))
+					{
 						addEntity(newEntity);
+					}
 				}
 
 				count++;
 			}
-			
-			
 		}
 
 		if (fromDirection > -1)
@@ -321,8 +339,11 @@ public class Environment extends JPanel
 			setupFromTransition(fromDirection);
 		}
 
-		player.moveToFront();
-
+		if(playerAdded)
+		{
+			player.moveToFront();
+		}
+		
 		for (int i = 0; i < itemsGot.size(); i++)
 		{
 			if (itemsGot.get(i).getState("carrying"))
@@ -359,16 +380,22 @@ public class Environment extends JPanel
 				mapXPosition = map.spawnLocFromDirection(DOWN) - View.X_RESOLUTION;
 
 				if (mapXPosition < 0)
+				{
 					mapXPosition = 0;
+				}
 
 				if (mapXPosition == 0)
+				{
 					oldPlayerX = map.spawnLocFromDirection(DOWN);
+				}
 				else if (map.spawnLocFromDirection(DOWN) - View.X_RESOLUTION / 2 >= map.getMapWidth())
 				{
 					mapXPosition = map.getMapWidth();
 					oldPlayerX = -(map.getMapWidth() - map.spawnLocFromDirection(DOWN));
 				} else
+				{
 					oldPlayerX = View.X_RESOLUTION / 2;
+				}
 			}
 
 			for (int i = 0; i < entityCount; i++)
@@ -388,20 +415,28 @@ public class Environment extends JPanel
 				mapXPosition = map.spawnLocFromDirection(UP) - View.X_RESOLUTION;
 
 				if (mapXPosition < 0)
+				{
 					mapXPosition = 0;
+				}
 
 				if (mapXPosition == 0)
+				{
 					oldPlayerX = map.spawnLocFromDirection(UP);
+				}
 				else if (map.spawnLocFromDirection(UP) - View.X_RESOLUTION / 2 >= map.getMapWidth())
 				{
 					mapXPosition = map.getMapWidth();
 					oldPlayerX = -(map.getMapWidth() - map.spawnLocFromDirection(UP));
 				} else
+				{
 					oldPlayerX = View.X_RESOLUTION / 2;
+				}
 			}
 
 			for (int i = 0; i < entityCount; i++)
+			{
 				entities[i].setXPos(entities[i].getXPos() - mapXPosition);
+			}
 
 			player.setCoordinates(oldPlayerX, -player.getSpriteWidth());
 			
@@ -414,7 +449,9 @@ public class Environment extends JPanel
 				mapYPosition = map.spawnLocFromDirection(RIGHT) - View.Y_RESOLUTION;
 
 				if (mapYPosition < 0)
+				{
 					mapYPosition = 0;
+				}
 
 				if (mapYPosition == 0)
 				{
@@ -447,7 +484,9 @@ public class Environment extends JPanel
 				mapYPosition = map.spawnLocFromDirection(LEFT) - View.Y_RESOLUTION;
 
 				if (mapYPosition < 0)
+				{
 					mapYPosition = 0;
+				}
 
 				if (mapYPosition == 0)
 				{
@@ -464,7 +503,9 @@ public class Environment extends JPanel
 			}
 
 			for (int i = 0; i < entityCount; i++)
+			{
 				entities[i].setYPos(entities[i].getYPos() - mapYPosition);
+			}
 
 			player.setCoordinates(-player.getSpriteWidth(), oldPlayerY);
 			
@@ -520,13 +561,17 @@ public class Environment extends JPanel
 			if (player.getXVelocity() < 0)
 			{
 				if (mapXPosition <= 0 || player.getXPos() > View.X_RESOLUTION / 2)
+				{
 					scroll = false;
+				}
 			}
 
 			if (player.getXVelocity() > 0)
 			{
 				if (mapXPosition >= map.getMapWidth() || player.getXPos() < View.X_RESOLUTION / 2)
+				{
 					scroll = false;
+				}
 
 			}
 
@@ -556,13 +601,17 @@ public class Environment extends JPanel
 			if (player.getYVelocity() < 0)
 			{
 				if (mapYPosition <= 0 || player.getYPos() > View.Y_RESOLUTION / 2)
+				{
 					scroll = false;
+				}
 			}
-
+				
 			if (player.getYVelocity() > 0)
 			{
 				if (mapYPosition >= map.getMapHeight() || player.getYPos() < View.Y_RESOLUTION / 2)
+				{
 					scroll = false;
+				}
 			}
 
 			if (scroll)
@@ -589,17 +638,21 @@ public class Environment extends JPanel
 			{
 				if (player.getXPos() + mapXPosition < map.spawnLocFromDirection(direction) - map.getBlockSize()
 						|| player.getXPos() + mapXPosition > map.spawnLocFromDirection(direction) + map.getBlockSize())
+				{
 					canTransition = false;
+				}
 			}
 			else
 			{
 				if (player.getYPos() + mapYPosition < map.spawnLocFromDirection(direction) - map.getBlockSize()
 						|| player.getYPos() + mapYPosition > map.spawnLocFromDirection(direction) + map.getBlockSize())
+				{
 					canTransition = false;
+				}
 			}
 		}
 
-		if (map.getTransition(direction) != -1 && canTransition)
+		if (map.getTransition(direction) != -1 && canTransitionFromLoc(direction, player.getXPos(), player.getYPos()) && canTransition)
 		{
 			oldPlayerX = player.getXPos();
 			oldPlayerY = player.getYPos();
@@ -608,6 +661,39 @@ public class Environment extends JPanel
 		{
 			player.setState("fallingOffScreen", true);
 		}
+	}
+	
+	private boolean canTransitionFromLoc(int direction, int xPos, int yPos)
+	{
+		if(map.transitionLocFromDirection(direction) == 0)
+		{
+			return true;
+		}
+		
+		if(direction == UP || direction == DOWN)
+		{
+			if(map.transitionLocFromDirection(direction) > 0 && (xPos + mapXPosition) > map.transitionLocFromDirection(direction))
+			{
+				return true;
+			}
+			else if(map.transitionLocFromDirection(direction) < 0 && (xPos + mapXPosition) < Math.abs(map.transitionLocFromDirection(direction)))
+			{
+				return true;
+			}
+		}
+		else
+		{
+			if(map.transitionLocFromDirection(direction) > 0 && (yPos + mapYPosition) > map.transitionLocFromDirection(direction))
+			{
+				return true;
+			}
+			else if(map.transitionLocFromDirection(direction) < 0 && (yPos + mapYPosition) < Math.abs(map.transitionLocFromDirection(direction)))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	// Resets the game, reloading the start map
@@ -647,14 +733,20 @@ public class Environment extends JPanel
 			entityBehavior();
 
 			if (!player.isXBlocked())
+			{
 				scrollXView(player.getXVelocity());
+			}
 
 			if (!player.isYBlocked())
+			{
 				scrollYView(player.getYVelocity());
+			}
 
 			repaint();
 		} else
+		{
 			overlay.paintOverlay(getGraphics());
+		}
 	}
 
 	@Override
@@ -668,7 +760,9 @@ public class Environment extends JPanel
 		g.setFont(big);
 
 		if (map.hasBackground())
+		{
 			g.drawImage(map.getBGImage(), bgXPosition, 0, this);
+		}
 
 		for (int i = 0; i < entityCount; i++)
 		{

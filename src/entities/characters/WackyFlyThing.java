@@ -9,8 +9,6 @@ public class WackyFlyThing extends Entity
 	public WackyFlyThing(Environment e, String n)
 	{
 		super(e, n);
-		
-		//setSprite("Link");
 
 		setType("WackyFlyThing");
 	}

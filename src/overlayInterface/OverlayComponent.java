@@ -56,7 +56,9 @@ public abstract class OverlayComponent implements Cloneable
 			sprite = (Sprite) overlay.getEnvironment().getSpriteFromBank(s).clone();
 			hasSprite = true;
 		} else
-			System.out.println("Couldn't find sprite " + s);
+		{
+			System.out.println("--> Couldn't find sprite " + s);
+		}
 	}
 
 	public boolean hasSprite()
@@ -107,9 +109,13 @@ public abstract class OverlayComponent implements Cloneable
 	{
 		if (xSpot < getXPos() + sprite.getCollisionWidth() && xSpot > getXPos()
 				&& ySpot < getYPos() + sprite.getCollisionHeight() && ySpot > getYPos())
+		{
 			return true;
+		}
 		else
+		{
 			return false;
+		}
 	}
 
 	public void clickPressedAt(int xSpot, int ySpot)

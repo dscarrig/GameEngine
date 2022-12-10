@@ -163,7 +163,7 @@ public class ShootyGuy extends Entity
 	{
 		if (getXVelocity() > 0)
 			setSpriteState("Right");
-		if (getXVelocity() < 0)
+		else if (getXVelocity() < 0)
 			setSpriteState("Left");
 
 		getSprite().setPaused(false);
@@ -178,7 +178,7 @@ public class ShootyGuy extends Entity
 
 			if (getXVelocity() > 0)
 				setSpriteState("JumpRight");
-			if (getXVelocity() < 0)
+			else if (getXVelocity() < 0)
 				setSpriteState("JumpLeft");
 		}
 	}

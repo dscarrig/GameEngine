@@ -95,14 +95,18 @@ public abstract class Entity implements Cloneable
 		return type;
 	}
 
+	// Sets the current health of this entity
 	public void setHealth(int h)
 	{
 		health = h;
 
 		if (maxHealth == -1)
+		{
 			maxHealth = h;
+		}
 	}
 
+	// Returns the current health of this entity
 	public int getHealth()
 	{
 		return health;
@@ -118,17 +122,22 @@ public abstract class Entity implements Cloneable
 		return power;
 	}
 
+	// Sets a state for this entity. Sets the state s to boolean v in the states map
 	public void setState(String s, boolean v)
 	{
 		states.put(s, v);
 	}
 
+	// Returns the boolean state of state s. If this entity does not have this state, returns false
 	public boolean getState(String s)
 	{
 		if (states.containsKey(s))
+		{
 			return states.get(s);
-		else
+		} else
+		{
 			return false;
+		}
 	}
 
 	public void setMaxHealth(int h)
@@ -136,16 +145,19 @@ public abstract class Entity implements Cloneable
 		maxHealth = h;
 	}
 
+	// Modifies the current health of this entity by h
 	public void modifyHealth(int h)
 	{
 		if (health + h <= maxHealth && health + h > -1)
+		{
 			health += h;
-
-		else if (health + h > maxHealth)
+		} else if (health + h > maxHealth)
+		{
 			health = maxHealth;
-
-		else if (health + h < 0)
+		} else if (health + h < 0)
+		{
 			health = 0;
+		}
 	}
 
 	public void setHasBehavior(boolean hb)
@@ -186,22 +198,31 @@ public abstract class Entity implements Cloneable
 			System.out.println("Couldn't find sprite " + s);
 	}
 
+	// Returns this entity's Sprite class object
 	public Sprite getSprite()
 	{
 		if (hasSprite)
+		{
 			return sprite;
-		else
+		} else
+		{
 			return null;
+		}
 	}
 
+	// Returns the current Image frame of this entity's Sprite
 	public Image getImage()
 	{
 		if (hasSprite)
+		{
 			return sprite.getCurrentImage();
-		else
+		} else
+		{
 			return null;
+		}
 	}
 
+	// Sets the current row of this entity's Sprite as the given String spriteState
 	public void setSpriteState(String spriteState)
 	{
 		sprite.setRow(spriteState, false);
@@ -272,7 +293,7 @@ public abstract class Entity implements Cloneable
 	{
 		return yVelocity + tempYVelocity;
 	}
-	
+
 	public int getAbsoluteXVelocity()
 	{
 		return xVelocity;
@@ -282,7 +303,7 @@ public abstract class Entity implements Cloneable
 	{
 		return yVelocity;
 	}
-	
+
 	public void setTempXVelocity(int xv)
 	{
 		tempXVelocity = xv;
@@ -292,7 +313,7 @@ public abstract class Entity implements Cloneable
 	{
 		tempYVelocity = yv;
 	}
-	
+
 	public int getTempXVelocity()
 	{
 		return tempXVelocity;
@@ -381,33 +402,50 @@ public abstract class Entity implements Cloneable
 	public int getTopCollision()
 	{
 		if (hasSprite())
+		{
 			return yPos + (getSpriteHeight() / 2) - (sprite.getCollisionHeight() / 2);
+		}
 		else
+		{
 			return -1;
+		}
+			
 	}
 
 	public int getBottomCollision()
 	{
 		if (hasSprite())
+		{
 			return yPos + (getSpriteHeight() / 2) + (sprite.getCollisionHeight() / 2);
+		}
 		else
+		{
 			return -1;
+		}
 	}
 
 	public int getLeftCollision()
 	{
 		if (hasSprite())
+		{
 			return xPos + (getSpriteWidth() / 2) - (sprite.getCollisionWidth() / 2);
+		}
 		else
+		{
 			return -1;
+		}
 	}
 
 	public int getRightCollision()
 	{
 		if (hasSprite())
+		{
 			return xPos + (getSpriteWidth() / 2) + (sprite.getCollisionWidth() / 2);
+		}
 		else
+		{
 			return -1;
+		}
 	}
 
 	// Returns the Environment the entity currently exists in.
@@ -420,20 +458,28 @@ public abstract class Entity implements Cloneable
 	{
 		int xTotal = xVelocity + tempXVelocity;
 		int yTotal = yVelocity + tempYVelocity;
-		
+
 		if (xMove)
 		{
 			if (xTotal <= TERMINAL_VELOCITY)
+			{
 				xPos += xTotal;
+			}
 			else
+			{
 				xPos += TERMINAL_VELOCITY;
+			}
 		}
 		if (yMove)
 		{
 			if (yTotal <= TERMINAL_VELOCITY)
+			{
 				yPos += yTotal;
+			}
 			else
+			{
 				yPos += TERMINAL_VELOCITY;
+			}
 		}
 
 	}
@@ -461,9 +507,13 @@ public abstract class Entity implements Cloneable
 		}
 
 		if (found)
+		{
 			return collisionEntity;
+		}
 		else
+		{
 			return this;
+		}
 	}
 
 	// Returns true if a solid entity exists with the given x/y velocity.
@@ -545,10 +595,11 @@ public abstract class Entity implements Cloneable
 	public void delete()
 	{
 		visible = false;
-		
+
 		env.removeEntity(this);
 	}
 
+	// Moves this entity to the top of the entity array, putting it at the front of the entity Z order
 	public void moveToFront()
 	{
 		Entity[] enArray = getEnvironment().getEntities().clone();

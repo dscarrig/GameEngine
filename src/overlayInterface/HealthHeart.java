@@ -38,11 +38,17 @@ public class HealthHeart extends OverlayComponent
 		heartState = state;
 		
 		if(heartState == FULL)
+		{
 			setSpriteState("Full");
+		}
 		else if(heartState == HALF)
+		{
 			setSpriteState("Half");
+		}
 		else if(heartState == EMPTY)
+		{
 			setSpriteState("Empty");
+		}
 	}
 	
 	public int getHeartState()

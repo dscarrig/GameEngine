@@ -20,19 +20,29 @@ public class Bullet extends Entity
 	public void behavior()
 	{
 		if (getXVelocity() > 0)
+		{
 			setXVelocity(getXVelocity() + 1);
+		}
 		else if (getXVelocity() < 0)
+		{
 			setXVelocity(getXVelocity() - 1);
+		}
 
 		if (getYVelocity() > 0)
+		{
 			setYVelocity(getYVelocity() + 1);
+		}
 		else if (getYVelocity() < 0)
+		{
 			setYVelocity(getYVelocity() - 1);
+		}
 
 		moveByVelocity(true, true);
 
 		if (isOffScreen())
+		{
 			getEnvironment().removeEntity(this);
+		}
 		
 		if(getCollisionEntity(getXVelocity(), getYVelocity(), false).isEnemy() && getType().contentEquals("Projectile"))
 		{
@@ -56,12 +66,20 @@ public class Bullet extends Entity
 	public void setDirection(int direction)
 	{
 		if (direction == UP)
+		{
 			setYVelocity(-4);
+		}
 		if (direction == DOWN)
+		{
 			setYVelocity(4);
+		}
 		if (direction == LEFT)
+		{
 			setXVelocity(-4);
+		}
 		if (direction == RIGHT)
+		{
 			setXVelocity(4);
+		}
 	}
 }

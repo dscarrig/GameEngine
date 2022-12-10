@@ -26,7 +26,9 @@ public class LightningBolt extends Entity
 		moveByVelocity(true, true);
 
 		if (isOffScreen())
+		{
 			getEnvironment().removeEntity(this);
+		}
 		
 		if(getCollisionEntity(getXVelocity(), getYVelocity(), false).isPlayer())
 		{

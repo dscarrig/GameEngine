@@ -28,6 +28,7 @@ public class Map
 	private String theme;
 
 	private int[] transitions;
+	private int[] transitionLocs;
 	private int[] spawnLocs;
 
 	private String[] entityTypes;
@@ -40,7 +41,7 @@ public class Map
 
 	// Initializes the map array, which contains all the starting entities and their
 	// location.
-	public Map(int[] ma, String[] et, int r, int c, int bs, Environment e, int[] tr, int[] sl, String bg, String th)
+	public Map(int[] ma, String[] et, int r, int c, int bs, Environment e, int[] tr, int[] trLocs, int[] sl, String bg, String th)
 	{
 		rows = r;
 		columns = c;
@@ -59,10 +60,13 @@ public class Map
 		yScrollable = yViewSize < rows;
 
 		transitions = tr;
+		transitionLocs = trLocs;
 		spawnLocs = sl;
 
 		if (bg.equals(""))
+		{
 			hasBackground = false;
+		}
 		else
 		{
 			hasBackground = true;
@@ -141,6 +145,11 @@ public class Map
 	{
 		return mapArray[index] == -2;
 	}
+	
+	public int transitionLocFromDirection(int direction)
+	{
+		return transitionLocs[direction] * blockSize;
+	}
 
 	public int spawnLocFromDirection(int direction)
 	{
@@ -148,9 +157,11 @@ public class Map
 		{
 			return spawnLocs[direction] * blockSize;
 		} else
+		{
 			return -1;
+		}
 	}
-
+		
 	public void setXScrollable(boolean s)
 	{
 		xScrollable = s;

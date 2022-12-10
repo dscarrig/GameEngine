@@ -50,7 +50,7 @@ public class Sprite implements Cloneable
 		curRow = 0;
 
 		name = n;
-	
+
 		frameDelay = 1;
 		frameCounter = 1;
 
@@ -80,7 +80,9 @@ public class Sprite implements Cloneable
 	public void setCurrentImage(int x, int y)
 	{
 		if (x + frameWidth <= spriteSheet.getWidth() && y + frameHeight <= spriteSheet.getHeight())
+		{
 			currentImage = spriteSheet.getSubimage(x, y, frameWidth, frameHeight);
+		}
 		else
 		{
 			System.out.println(
@@ -91,24 +93,28 @@ public class Sprite implements Cloneable
 	public void setPaused(boolean p)
 	{
 		if (!p && frames > 1)
-			timer.start();
-		else
 		{
-			if(frameDelay > 1)
-				frameCounter = 0;
+			timer.start();
+		}
+		else if (frameDelay > 1)
+		{
+			frameCounter = 0;
 		}
 
 		paused = p;
 	}
-	
+
 	public void setDelay(int delay)
 	{
 		frameDelay = delay;
-		
-		if(delay > 1)
+
+		if (delay > 1)
+		{
 			frameCounter = 0;
-		else
+		} else
+		{
 			frameCounter = 1;
+		}
 	}
 
 	public int getFrameWidth()
@@ -165,7 +171,7 @@ public class Sprite implements Cloneable
 	{
 		random = r;
 	}
-	
+
 	public boolean atRow(String direction)
 	{
 		return curRow == getRowIndex(direction);
@@ -188,16 +194,21 @@ public class Sprite implements Cloneable
 		}
 
 		if (found)
+		{
 			return rowIndex;
-		else
+		} else
+		{
 			return -1;
+		}
 	}
 
 	public void setRow(String direction, boolean terminal)
 	{
 		if (getRowIndex(direction) == -1)
-			System.out.println("Could not find " + direction);
-		else
+		{
+			// System.out.println("--> Could not find " + direction);
+			curRow = 0;
+		} else
 		{
 			if (getRowIndex(direction) < numRows)
 			{
@@ -206,15 +217,19 @@ public class Sprite implements Cloneable
 				playOnce = terminal;
 
 				if (terminal)
+				{
 					curColumn = 0;
+				}
 			}
 		}
 	}
-	
+
 	public void setColumn(int column)
 	{
-		if(column < frames)
+		if (column < frames)
+		{
 			curColumn = column;
+		}
 	}
 
 	public Object clone()
@@ -234,15 +249,21 @@ public class Sprite implements Cloneable
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			if(frameDelay > 1)
+			if (frameDelay > 1)
+			{
 				frameCounter++;
-				
+			}
+
 			if (!paused && frameCounter % frameDelay == 0)
 			{
 				if (random)
+				{
 					curColumn = (int) (Math.random() * frames);
+				}
 				else
+				{
 					curColumn++;
+				}
 
 				if (curColumn >= frames - 1)
 				{
@@ -250,7 +271,9 @@ public class Sprite implements Cloneable
 					{
 						setPaused(true);
 					} else
+					{
 						curColumn = 0;
+					}
 				}
 
 				frameCounter = 0;

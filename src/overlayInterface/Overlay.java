@@ -31,15 +31,21 @@ public class Overlay
 			while (index < componentCount)
 			{
 				if (components[index].getType().equals("Blank"))
+				{
 					break;
+				}
 				else
+				{
 					index++;
+				}
 			}
 
 			components[index] = oc;
 
 			if (index == componentCount)
+			{
 				componentCount++;
+			}
 		} else
 			System.out.println("Maximum components");
 	}
@@ -56,17 +62,25 @@ public class Overlay
 			while (index < componentCount)
 			{
 				if (components[index].getType().equals("Blank"))
+				{
 					break;
+				}
 				else
+				{
 					index++;
+				}
 			}
 
 			components[index] = oc;
 
 			if (index == componentCount)
+			{
 				componentCount++;
+			}
 		} else
-			System.out.println("Maximum components");
+		{
+			System.out.println("--> Maximum components");
+		}
 	}
 
 	public void removeComponent(OverlayComponent oc)
@@ -74,7 +88,9 @@ public class Overlay
 		int index = 0;
 
 		while (!components[index].equals(oc) && index < components.length)
+		{
 			index++;
+		}
 
 		if (index < components.length)
 		{
@@ -88,7 +104,9 @@ public class Overlay
 		int index = 0;
 
 		while (!components[index].getName().equals(name) && index < components.length)
+		{
 			index++;
+		}
 
 		if (index < components.length)
 		{
